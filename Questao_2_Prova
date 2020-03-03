@@ -1,0 +1,64 @@
+#include <stdio.h>
+
+
+void binario(int x, char b0[], char b1[], char b2[], char b3[]){
+    int count;
+    char by[32];
+    for(int i = 31;i>=0;i--){
+        count = x >> i;
+        if(count & 1){
+           by[i] = '1';
+        }
+        else{
+           by[i] = '0';
+        }
+        //printf("%c",by[i]);
+        if(i<8){
+            b0[i] = by[i];
+        }
+        if(i<16 && i>7){
+            b1[i-8] = by[i];
+        }
+        if(i<24 && i>15){
+            b2[i-16] = by[i];
+        }
+        if(i<32 && i>23){
+            b3[i-24] = by[i];
+        }
+    }
+}
+
+
+int main()
+{
+    int num;
+    char byte0[8], byte1[8], byte2[8], byte3[8];
+    printf("Digite um numero\n");
+    scanf("%d",&num);
+    binario(num, byte0, byte1, byte2, byte3);
+    printf("Byte0 = ");
+    for(int i=7;i>=0;i--){
+       printf("%c",byte0[i]);
+    }
+    printf("\n");
+
+    printf("Byte1 = ");
+    for(int i=7;i>=0;i--){
+       printf("%c",byte1[i]);
+    }
+    printf("\n");
+
+    printf("Byte2 = ");
+    for(int i=7;i>=0;i--){
+       printf("%c",byte2[i]);
+    }
+    printf("\n");
+
+    printf("Byte3 = ");
+    for(int i=7;i>=0;i--){
+       printf("%c",byte3[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
